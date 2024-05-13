@@ -1,6 +1,16 @@
+# Site settings
 theme: minimal-mistakes-jekyll
 title: 'Data'
 title_separator: '-'
 name: 'Muthumanickam V'
-description: Deep dive into data
+description: 'Deep dive into data'
 url: 'https://muthumanickam1521.github.io/'
+
+# Author
+author:
+  name: 'Muthumanickam V'
+  avatar: '/assets/images/my_headshot.png'
+  bio: 'Data Scientist Intern'
+  location: 'Bangalore'
+  email: 'pearlrubymv@gmail.com'
+  linkedin: 'muthumanickamv'
