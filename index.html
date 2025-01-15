@@ -3,137 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Scientist Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.plotly.com/plotly-latest.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- MUI Icons -->
     <style>
-        body {
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
             font-family: 'Roboto', sans-serif;
-            background-color: #0d0d0d;
-            color: #e0e0e0;
-            overflow-x: hidden;
-        }
-        header {
+            font-size: 16px;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 40px;
-            background: linear-gradient(90deg, #0f0f0f, #1b1b1b);
-            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
+            height: 100vh;
+            overflow: hidden;
         }
-        .headshot {
-            border-radius: 50%;
-            width: 70px;
-            height: 70px;
-            object-fit: cover;
-            border: 2px solid cyan;
-        }
-        .title {
-            font-size: 2rem;
-            color: cyan;
-            font-weight: 700;
-            text-shadow: 0 0 10px cyan;
-        }
-        nav a {
-            margin: 0 20px;
-            text-decoration: none;
-            color: cyan;
-            font-weight: bold;
-            position: relative;
-        }
-        nav a:hover {
-            text-shadow: 0 0 15px cyan;
-        }
-        nav a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -5px;
+
+        #container {
+            display: flex;
             width: 100%;
-            height: 2px;
-            background: cyan;
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-        nav a:hover::after {
-            transform: scaleX(1);
-        }
-        .container {
-            padding: 40px 20px;
-            max-width: 1200px;
+            height: 100%;
+            max-width: 2400px;
             margin: auto;
         }
-        .project {
-            margin: 40px 0;
+
+        #left, #right {
+            height: 100%;
+            overflow-y: scroll;
+        }
+
+        #left.light {
+            width: 20%;
+            background: rgba(255, 255, 255, 0.15); /* Light glass effect */
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(4.5px);
+            -webkit-backdrop-filter: blur(4.5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 20px;
-            background: #1a1a1a;
-            border: 1px solid cyan;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: #000000; /* Adjust text color for light mode */
         }
-        .project:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.4);
+
+        #left.dark {
+            width: 20%;
+            background: rgba(0, 0, 0, 0.21); /* Dark glass effect */
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(4.5px);
+            -webkit-backdrop-filter: blur(4.5px);
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: #ffffff; /* Adjust text color for dark mode */
         }
-        .project h3 {
-            font-size: 1.8rem;
-            color: cyan;
-            text-shadow: 0 0 8px cyan;
+
+        #left nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
         }
-        .project p {
-            font-size: 1rem;
-            color: #cccccc;
-        }
-        .plot {
-            margin-top: 20px;
-            border: 2px solid cyan;
-            border-radius: 15px;
-            padding: 10px;
-            background: #101010;
-        }
-        footer {
-            text-align: center;
-            padding: 30px;
-            margin-top: 50px;
-            background: #0f0f0f;
-            color: rgba(255, 255, 255, 0.7);
-            border-top: 2px solid cyan;
-        }
-        footer a {
-            color: cyan;
+
+        #left nav a {
             text-decoration: none;
-            font-weight: bold;
+            padding: 10px;
+            font-weight: 500;
+            text-align: center;
+            width: 100%;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
         }
-        footer a:hover {
-            text-shadow: 0 0 10px cyan;
+
+        /* Light Theme link color */
+        #left.light nav a {
+            color: #333;
         }
+
+        /* Dark Theme link color */
+        #left.dark nav a {
+            color: #ffffff;
+        }
+
+        #left nav a:hover {
+            background-color: #ffffff7a;
+        }
+
+        #left i {
+            font-size: 24px;
+            color: inherit;
+            position: absolute;
+            bottom: 10px;
+            cursor: pointer;
+        }
+
+        #right {
+            width: 80%;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header, section, footer {
+            margin-bottom: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        section {
+            display: none;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            #container {
+                flex-direction: column;
+            }
+
+            #left, #right {
+                width: 100%;
+            }
+
+            body {
+                font-size: 16px;
+            }
+        }
+
+        body.light {
+            background-color: #fff;
+            color: #333;
+        }
+
+        body.dark {
+            background-color: #121212;
+            color: #fff;
+        }
+
     </style>
 </head>
 <body>
-    <header>
-        <div class=\"title\">Data Scientist Portfolio</div>
-        <img class=\"headshot\" src=\"headshot.jpg\" alt=\"Professional Headshot\">
-        <nav>
-            <a href=\"#projects\">Projects</a>
-            <a href=\"https://github.com/your-github\" target=\"_blank\">GitHub</a>
-        </nav>
-    </header>
-    <div class=\"container\">
-        <section id=\"projects\">
-            <h2 style=\"color: cyan; text-align: center; text-shadow: 0 0 10px cyan;\">Projects</h2>
-            <div class=\"project\">
-                <h3>Project 1: Interactive Visualization</h3>
-                <p>Details about this project.</p>
-                <div id=\"plot1\" class=\"plot\"></div>
-            </div>
-        </section>
-    </div>
-    <footer>
-        <p>© 2025 Your Name | <a href=\"https://github.com/your-github\" target=\"_blank\">GitHub</a></p>
-    </footer>
-    <script>
-        function createPlot(id) {
-            Plotly.newPlot(id, [{ x: [1, 2, 3, 4], y: [10, 15, 13, 17], mode: 'lines+markers', marker: { color: 'cyan' }}], { margin: { t: 0 }, paper_bgcolor: '#101010', plot_bgcolor: '#101010', font: { color: '#e0e0e0' }});\n           }\n           createPlot('plot1');\n       </script>\n   </body>\n   </html>\n   ```
 
+    <div id="container">
+        <!-- Left Sidebar (Navigation) -->
+        <div id="left" class="light"> <!-- Default theme is light -->
+            <nav>
+                <a href="javascript:void(0)" onclick="showContent('home')">Home</a>
+                <a href="javascript:void(0)" onclick="showContent('about')">About</a>
+                <a href="javascript:void(0)" onclick="showContent('projects')">Projects</a>
+                <a href="javascript:void(0)" onclick="showContent('contact')">Contact</a>
+            </nav>
+            <i class="material-icons" onclick="toggleTheme()">dark_mode</i> <!-- MUI Dark Mode Icon -->
+        </div>
+
+        <!-- Main Content Area (Right Column) -->
+        <div id="right">
+            <section id="home" class="active">
+                <header>
+                    <h1>Welcome to My Data Science Portfolio</h1>
+                    <p>Hi, I'm <strong>Your Name</strong>, a passionate data scientist.</p>
+                </header>
+            </section>
+
+            <section id="about">
+                <h2>About Me</h2>
+                <p>I specialize in data analysis, machine learning, and building end-to-end data-driven solutions.</p>
+            </section>
+
+            <section id="projects">
+                <h2>Projects</h2>
+                <ul>
+                    <li><a href="#">Predictive Modeling for Housing Prices</a></li>
+                    <li><a href="#">Customer Segmentation Analysis</a></li>
+                    <li><a href="#">Time Series Forecasting with ARIMA</a></li>
+                </ul>
+            </section>
+
+            <section id="contact">
+                <h2>Contact</h2>
+                <p>Feel free to reach out to me via email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Function to display the selected content section
+        function showContent(sectionId) {
+            let sections = document.querySelectorAll('#right section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            let activeSection = document.getElementById(sectionId);
+            activeSection.classList.add('active');
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const leftContainer = document.getElementById('left');
+            const icon = document.querySelector('#left i');
+            
+            if (body.classList.contains('light')) {
+                body.classList.remove('light');
+                body.classList.add('dark');
+                leftContainer.classList.remove('light');
+                leftContainer.classList.add('dark');
+                icon.textContent = 'light_mode'; // Change icon to sun (for dark mode)
+            } else {
+                body.classList.remove('dark');
+                body.classList.add('light');
+                leftContainer.classList.remove('dark');
+                leftContainer.classList.add('light');
+                icon.textContent = 'dark_mode'; // Change icon to moon (for light mode)
+            }
+        }
+
+    </script>
+
+</body>
+</html>
